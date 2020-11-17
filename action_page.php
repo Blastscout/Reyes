@@ -19,9 +19,9 @@ $email = $_POST["email"];
 $state = $_POST["state"];
 $city = $_POST["city"];
 $years = $_POST["years"];
-$password = $_POST["psw"];
+$pass = $_POST["psw"];
 
-$sql = "INSERT INTO users(FirstName,LastName,Email,Password,State,City,YearsLicensed)VALUES('$firstName','$lastName','$email','$password','$state','$city','$years')";
+$sql = "INSERT INTO users(FirstName,LastName,Email,Password,State,City,YearsLicensed)VALUES('$firstName','$lastName','$email','$pass','$state','$city','$years')";
 if ($conn->query($sql) === TRUE) {
  echo "Sign up successfully!";
  header("location: index.html");
