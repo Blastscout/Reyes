@@ -20,8 +20,9 @@ $state = $_POST["state"];
 $city = $_POST["city"];
 $years = $_POST["years"];
 $pass = $_POST["psw"];
-
-$sql = "INSERT INTO users(FirstName,LastName,Email,Password,State,City,YearsLicensed)VALUES('$firstName','$lastName','$email','$pass','$state','$city','$years')";
+//Hashes password
+$hashed = password_hash($pass, PASSWORD_DEFAULT);
+$sql = "INSERT INTO users(FirstName,LastName,Email,Password,State,City,YearsLicensed)VALUES('$firstName','$lastName','$email','$hashed','$state','$city','$years')";
 if ($conn->query($sql) === TRUE) {
  echo "Sign up successfully!";
  header("location: index.html");

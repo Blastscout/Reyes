@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 17, 2020 at 04:11 PM
+-- Generation Time: Nov 17, 2020 at 09:58 PM
 -- Server version: 8.0.18
 -- PHP Version: 7.3.11
 
@@ -111,7 +111,7 @@ CREATE TABLE `users` (
   `FirstName` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
   `LastName` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
   `Email` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
-  `Password` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
+  `Password` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `State` varchar(2) COLLATE utf8mb4_general_ci NOT NULL,
   `City` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
   `YearsLicensed` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
@@ -184,7 +184,7 @@ ALTER TABLE `statuses`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
