@@ -31,8 +31,8 @@ if(!isset($ret['UserID'])){
     </div>
     <div class="fl_right">
       <ul class="nospace">
-        <li><i class="fas fa-phone rgtspace-5"></i> +00 (123) 456 7890</li>
-        <li><i class="fas fa-envelope rgtspace-5"></i> <a href="mailto:ogorzalm@go.stockton.edu">ogorzalm@go.stockton.edu</a></li>
+        <li><i class="fas fa-phone rgtspace-5"></i> Signed in as: </li>
+        <li><i class="fas fa-envelope rgtspace-5"></i> <?php echo $ret['FirstName']; echo " "; echo $ret['LastName'];?></li>
       </ul>
     </div>
     <!-- ################################################################################################ -->
@@ -110,9 +110,6 @@ if(!isset($ret['UserID'])){
     <div class="content"> 
 <div class="container">
 
-
-<h1> Welcome <?php echo $ret['FirstName']; echo $ret['LastName'];?> </h1>
-<a class="float-right" href="logout.php">Logout</a>
 </div>
 </div>
 </div>
