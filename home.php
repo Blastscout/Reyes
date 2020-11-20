@@ -31,8 +31,8 @@ if(!isset($ret['UserID'])){
     </div>
     <div class="fl_right">
       <ul class="nospace">
-        <li><i class="fas fa-phone rgtspace-5"></i> Signed in as: </li>
-        <li><i class="fas fa-envelope rgtspace-5"></i> <?php echo $ret['FirstName']; echo " "; echo $ret['LastName'];?></li>
+        <li>Signed in as: </li>
+        <li><?php echo $ret['FirstName']; echo " "; echo $ret['LastName'];?></li>
       </ul>
     </div>
     <!-- ################################################################################################ -->
@@ -50,7 +50,6 @@ if(!isset($ret['UserID'])){
     </div>
     <div class="one_quarter"><strong><i class="fas fa-phone rgtspace-5"></i> Call Us:</strong> +00 (123) 456 7890</div>
     <div class="one_quarter"><strong><i class="far fa-clock rgtspace-5"></i> Mon. - Sat.:</strong> 08:00am - 18:00pm</div>
-	<div class="one_quarter"><strong><i class="far fa-clock rgtspace-5"></i><?php echo $ret['FirstName']; echo $ret['LastName'];?></div>
     <div class="one_quarter">
       <form action="#" method="post">
         <label>
