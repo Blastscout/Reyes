@@ -152,7 +152,8 @@ a {
     <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
 
     <label for="psw-repeat"><b>Re-Enter Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+	<input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" onkeyup="check(this)" required>
+	<div id ='error'></div>
     <hr>
     <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
@@ -163,6 +164,19 @@ a {
     <p>Already have an account? <a href="#">Sign in</a>.</p>
   </div>
 </form>
-
+<script type="text/javascript">
+	var password = document.getElementById('psw');
+	function check(elem){
+	if(elem.value.length > 0){
+		if (elem.value != password.value){
+			document.getElementById('error').innerText = "Passwords do not match";
+			}
+		else{
+			document.getElementById('error').innerText = "";
+			}
+		
+		}
+	}	
+</script>
 </body>
 </html>
