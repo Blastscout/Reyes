@@ -26,6 +26,7 @@ if(!isset($ret['UserID'])){
         <li><a href="mailto:ogorzalm@go.stockton.edu">Contact</a></li>
         <li><a href=LOGIN.html>Login</a></li>
         <li><a href=SIGN-UPPAGE.html>Register</a></li>
+		<li><a href=complaintForm.html>File Complaint</a></li>
 		<li><a href="logout.php">LOGOUT</a></li>
       </ul>
     </div>
@@ -123,11 +124,11 @@ if(!isset($ret['UserID'])){
       <ul class="nospace btmspace-30 linklist contact">
         <li><i class="fas fa-map-marker-alt"></i>
           <address>
-          Street Name &amp; Number, Town, Postcode/Zip
+          TBD
           </address>
         </li>
-        <li><i class="fas fa-phone"></i> +00 (123) 456 7890</li>
-        <li><i class="far fa-envelope"></i> info@domain.com</li>
+        <li><i class="fas fa-phone"></i> 1-(690)-REYES-00</li>
+        <li><i class="far fa-envelope"></i> reyescompany@domain.com</li>
       </ul>
       <ul class="faico clear">
         <li><a class="faicon-facebook" href="#"><i class="fab fa-facebook"></i></a></li>
@@ -137,23 +138,11 @@ if(!isset($ret['UserID'])){
       </ul>
     </div>
     <div class="one_quarter">
-      <h6 class="heading">Dignissim nibh ut</h6>
+      <h6 class="heading">About Reyes</h6>
       <ul class="nospace linklist">
-        <li><a href="#">Natoque penatibus et magnis</a></li>
-        <li><a href="#">Dis parturient montes</a></li>
-        <li><a href="#">Nascetur ridiculus mus</a></li>
-        <li><a href="#">Vestibulum tincidunt nisi</a></li>
-        <li><a href="#">Sed eleifend scelerisque</a></li>
-      </ul>
-    </div>
-    <div class="one_quarter">
-      <h6 class="heading">Vestibulum cras placerat</h6>
-      <ul class="nospace linklist">
-        <li><a href="#">Maecenas vestibulum molestie</a></li>
-        <li><a href="#">Arcu cras sed tincidunt</a></li>
-        <li><a href="#">Enim maecenas sed mi dictum</a></li>
-        <li><a href="#">Dolor laoreet fringilla</a></li>
-        <li><a href="#">Augue curabitur lobortis</a></li>
+        <li><a href="#">Company Information</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Sitemap</a></li>
       </ul>
     </div>
     <div class="one_quarter">
