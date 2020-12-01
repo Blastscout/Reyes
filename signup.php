@@ -34,8 +34,10 @@ if($count > 0){
 else{
 $sql = "INSERT INTO users(FirstName,LastName,Email,Password,State,City,YearsLicensed)VALUES('$firstName','$lastName','$email','$pass','$state','$city','$years')";
 if ($conn->query($sql) === TRUE) {
- echo "Sign up successfully!";
- header("location: index.html");
+ echo "<script> alert('Account created successfully. Please login');
+ window.location = 'LOGIN.html';
+ </script>";
+
 }
 else {
  echo "Error: " . $sql . "<br>" . $conn->error;
