@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<?php
+session_start();
+$ret = $_SESSION['row'];
+if(!isset($ret['UserID'])){
+	header('location:login.html');
+	}
+?>
 
 <html lang="">
 <head>
@@ -66,7 +73,7 @@
   <nav id="mainav" class="hoc clear"> 
     <!-- ################################################################################################ -->
     <ul class="clear">
-      <li class="active"><a href="index.html">Home</a></li>
+      <li class="active"><a href="home.php">Home</a></li>
       <li><a class="drop" href="#">Explore</a>
         <ul>
           <li><a href="pages/gallery.html">Agent Gallery</a></li>
@@ -120,8 +127,9 @@
 			$username = "root";
 			$password = "mysql";
 			$dbname = "reyesdb";
-			$conn = new mysqli($servername, $username, $password, $dbname);
-			$sql = "Select FirstName,LastName, YearsLicensed,City,State,Email from users";
+      $conn = new mysqli($servername, $username, $password, $dbname);
+      $ID = $ret['UserID'];
+			$sql = "Select FirstName,LastName, YearsLicensed,City,State,Email from users where UserID != $ID";
 			$result = $conn->query($sql);
 			if ($result->num_rows>0){
 				while ($row = $result-> fetch_assoc()){
