@@ -41,10 +41,12 @@ CREATE TABLE `blockedusers` (
 --
 
 CREATE TABLE `colleagues` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
   `Datemade` DATETIME NOT NULL,
   `Accepted` ENUM('0','1') NOT NULL DEFAULT '0',
   `UserID` int(11) NOT NULL,
   `UserID2` int(11) NOT NULL
+  Primary Key (ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
