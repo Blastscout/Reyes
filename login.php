@@ -28,7 +28,10 @@ if (!isset($_SESSION['row'])) {
  header('location:home.php');
 }
 } else {
-header("location:LOGIN.html");
+    echo"
+	<script> alert('Incorrect email or password. Try again');
+	window.location = 'LOGIN.html';
+	</script>";
  }
 $conn->close();
 ?>
