@@ -41,7 +41,8 @@ CREATE TABLE `blockedusers` (
 --
 
 CREATE TABLE `colleagues` (
-  `Date` date NOT NULL,
+  `Datemade` DATETIME NOT NULL,
+  `Accepted` ENUM('0','1') NOT NULL DEFAULT '0',
   `UserID` int(11) NOT NULL,
   `UserID2` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -81,8 +82,7 @@ CREATE TABLE `messages` (
 CREATE TABLE `reports` (
   `UserID` int(11) NOT NULL,
   `UserID2` int(11) NOT NULL,
-  `Date` date NOT NULL,
-  `Time` time NOT NULL,
+  `DateMade` DATETIME NOT NULL,
   `Reason` longtext COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -128,6 +128,7 @@ CREATE TABLE `users` (
 ALTER TABLE `blockedusers`
   ADD KEY `UserID` (`UserID`),
   ADD KEY `UserID2` (`UserID2`);
+  
 
 --
 -- Indexes for table `colleagues`
@@ -135,7 +136,7 @@ ALTER TABLE `blockedusers`
 ALTER TABLE `colleagues`
   ADD KEY `UserID` (`UserID`),
   ADD KEY `UserID2` (`UserID2`);
-
+  
 --
 -- Indexes for table `comments`
 --
