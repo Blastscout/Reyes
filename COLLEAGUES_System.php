@@ -24,10 +24,10 @@ if (isset($_POST['type']) && isset($_POST['user'])){
 		$sql = "SELECT COUNT(ID) FROM colleagues WHERE UserID='$user' AND accepted='1' OR UserID2='$user' AND accepted='1'";
 		$query = mysqli_query($db_conx, $sql);
 		$colleague_count = mysqli_fetch_row($query);
-		$sql = "SELECT COUNT(ID) FROM blockedusers WHERE blocker='$user' AND blockee='$log_username' LIMIT 1";
+		$sql = "SELECT COUNT(ID) FROM blockedusers WHERE UserID='$user' AND UserID2='$log_username' LIMIT 1";
 		$query = mysqli_query($db_conx, $sql);
 		$blockcount1 = mysqli_fetch_row($query);
-		$sql = "SELECT COUNT(ID) FROM blockedusers WHERE blocker='$log_username' AND blockee='$user' LIMIT 1";
+		$sql = "SELECT COUNT(ID) FROM blockedusers WHERE UserID='$log_username' AND UserID2='$user' LIMIT 1";
 		$query = mysqli_query($db_conx, $sql);
 		$blockcount2 = mysqli_fetch_row($query);
 		$sql = "SELECT COUNT(ID) FROM colleagues WHERE UserID='$log_username' AND UserID2='$user' AND accepted='1' LIMIT 1";
