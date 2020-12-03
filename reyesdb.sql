@@ -29,7 +29,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `blockedusers` (
-  `Date` date NOT NULL,
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `blockdate` DATETIME NOT NULL,
   `UserID` int(11) NOT NULL,
   `UserID2` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -46,7 +47,6 @@ CREATE TABLE `colleagues` (
   `Accepted` ENUM('0','1') NOT NULL DEFAULT '0',
   `UserID` int(11) NOT NULL,
   `UserID2` int(11) NOT NULL
-  Primary Key (ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -128,6 +128,7 @@ CREATE TABLE `users` (
 -- Indexes for table `blockedusers`
 --
 ALTER TABLE `blockedusers`
+  ADD PRIMARY KEY (`ID`),
   ADD KEY `UserID` (`UserID`),
   ADD KEY `UserID2` (`UserID2`);
   
@@ -136,6 +137,7 @@ ALTER TABLE `blockedusers`
 -- Indexes for table `colleagues`
 --
 ALTER TABLE `colleagues`
+  ADD PRIMARY KEY (`ID`),
   ADD KEY `UserID` (`UserID`),
   ADD KEY `UserID2` (`UserID2`);
   
