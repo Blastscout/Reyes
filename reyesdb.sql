@@ -132,7 +132,8 @@ CREATE TABLE `users` (
   `State` varchar(2) COLLATE utf8mb4_general_ci NOT NULL,
   `City` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
   `YearsLicensed` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
-  `Picture` longblob
+  `Picture` longblob,
+  `notescheck` DATETIME NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
