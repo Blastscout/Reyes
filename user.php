@@ -42,9 +42,9 @@ $isColleague = false;
 $ownerBlockViewer = false;
 $viewerBlockOwner = false;
 if($u != $log_username && $user_ok == true){
-	$colleague_check = "SELECT ID FROM colleagus WHERE UserID='$log_username' AND UserID2='$u' AND accepted='1' OR UserID='$u' AND UserID2='$log_username' AND accepted='1' LIMIT 1";
+	$colleague_check = "SELECT ID FROM colleagues WHERE UserID='$log_username' AND UserID2='$u' AND accepted='1' OR UserID='$u' AND UserID2='$log_username' AND accepted='1' LIMIT 1";
 	if(mysqli_num_rows(mysqli_query($db_conx, $colleague_check)) > 0){
-        $isFriend = true;
+        $iscolleague = true;
     }
 	$block_check1 = "SELECT ID FROM blockedusers WHERE UserID2='$u' AND UserID='$log_username' LIMIT 1";
 	if(mysqli_num_rows(mysqli_query($db_conx, $block_check1)) > 0){
@@ -58,7 +58,7 @@ if($u != $log_username && $user_ok == true){
 ?><?php 
 $colleague_button = '<button disabled>Request As Colleague</button>';
 $block_button = '<button disabled>Block User</button>';
-// LOGIC FOR FRIEND BUTTON
+// LOGIC FOR Colleague BUTTON
 if($isColleague == true){
 	$colleague_button = '<button onclick="colleagueToggle(\'uncolleague\',\''.$u.'\',\'colleagueBtn\')">Uncolleague</button>';
 } else if($user_ok == true && $u != $log_username && $ownerBlockViewer == false){
@@ -73,7 +73,7 @@ if($viewerBlockOwner == true){
 ?><?php
 $colleaguesHTML = '';
 $colleagues_view_all_link = '';
-$sql = "SELECT COUNT(ID) FROM friends WHERE UserID='$u' AND accepted='1' OR UserID2='$u' AND accepted='1'";
+$sql = "SELECT COUNT(ID) FROM colleagues WHERE UserID='$u' AND accepted='1' OR UserID2='$u' AND accepted='1'";
 $query = mysqli_query($db_conx, $sql);
 $query_count = mysqli_fetch_row($query);
 $colleague_count = $query_count[0];
@@ -108,11 +108,11 @@ if($colleague_count < 1){
 	$query = mysqli_query($db_conx, $sql);
 	while($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
 		$colleagues_username = $row["FirstName"] " " $row["LastName"];
-		$colleagues_picture = $row["Picture"];
-		if($friend_avatar != ""){
-			$colleague_pic = 'user/'.$colleagues_username.'/'.$colleagues_picture.'';
+		$colleague_picture = $row["Picture"];
+		if($colleague_pic != ""){
+			$colleague_pic = 'user/'.$colleagues_username.'/'.$colleague_picture.'';
 		} else {
-			$colleague_pic = 'images/avatardefault.jpg';
+			$colleague_pic = 'images/avatar.png';
 		}
 		$colleaguesHTML .= '<a href="user.php?u='.$colleagues_username.'"><img class="colleaguepics" src="'.$colleague_pic.'" alt="'.$colleagues_username.'" title="'.$colleagues_username.'"></a>';
 	}
@@ -126,7 +126,7 @@ if($colleague_count < 1){
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="style/style.css">
 <style type="text/css">
-img.friendpics{border:#000 1px solid; width:40px; height:40px; margin:2px;}
+img.colleaguepics{border:#000 1px solid; width:40px; height:40px; margin:2px;}
 </style>
 <script src="js/main.js"></script>
 <script src="js/ajax.js"></script>
