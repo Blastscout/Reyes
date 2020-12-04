@@ -52,6 +52,21 @@ CREATE TABLE `colleagues` (
 -- --------------------------------------------------------
 
 --
+--Table structure for table `notifactions`
+--
+CREATE TABLE `notifactions` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `UserID` int(11) NOT NULL,
+  `initiator` VARCHAR(16) NOT NUll,
+  `app` VARCHAR(255) NOT NULL,
+  `note` VARCHAR(255) NOT NULL,
+  `did_read` ENUM('0','1') NOT NULL DEFAULT '0',
+  `date_time` DATETIME NOT NULL
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `comments`
 --
 
@@ -141,6 +156,12 @@ ALTER TABLE `colleagues`
   ADD KEY `UserID` (`UserID`),
   ADD KEY `UserID2` (`UserID2`);
   
+--
+-- Indexes for table `blockedusers`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`ID`);
+
 --
 -- Indexes for table `comments`
 --
