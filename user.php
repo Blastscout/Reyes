@@ -107,7 +107,7 @@ if($colleague_count < 1){
 	$sql = "SELECT UserID, Picture FROM users WHERE $orLogic";
 	$query = mysqli_query($db_conx, $sql);
 	while($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
-		$colleagues_username = $row["FirstName"] +" "+ $row["LastName"];
+		$colleagues_username = $row["FirstName"] " " $row["LastName"];
 		$colleagues_picture = $row["Picture"];
 		if($friend_avatar != ""){
 			$colleague_pic = 'user/'.$colleagues_username.'/'.$colleagues_picture.'';
