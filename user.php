@@ -36,35 +36,33 @@ while ($row = mysqli_fetch_array($user_query, MYSQLI_ASSOC)) {
 	$state = $row["State"];
 	$city = $row["City"];
 	$yearslicensed = $row["YearsLincensed"];
-	$joindate = strftime("%b %d, %Y", strtotime($signup));
-	$lastsession = strftime("%b %d, %Y", strtotime($lastlogin));
 }
 ?><?php
-$isFriend = false;
+$isColleague = false;
 $ownerBlockViewer = false;
 $viewerBlockOwner = false;
 if($u != $log_username && $user_ok == true){
-	$friend_check = "SELECT id FROM friends WHERE user1='$log_username' AND user2='$u' AND accepted='1' OR user1='$u' AND user2='$log_username' AND accepted='1' LIMIT 1";
-	if(mysqli_num_rows(mysqli_query($db_conx, $friend_check)) > 0){
+	$colleague_check = "SELECT ID FROM colleagus WHERE UserID='$log_username' AND UserID2='$u' AND accepted='1' OR UserID='$u' AND UserID2='$log_username' AND accepted='1' LIMIT 1";
+	if(mysqli_num_rows(mysqli_query($db_conx, $colleague_check)) > 0){
         $isFriend = true;
     }
-	$block_check1 = "SELECT id FROM blockedusers WHERE blocker='$u' AND blockee='$log_username' LIMIT 1";
+	$block_check1 = "SELECT ID FROM blockedusers WHERE UserID2='$u' AND UserID='$log_username' LIMIT 1";
 	if(mysqli_num_rows(mysqli_query($db_conx, $block_check1)) > 0){
         $ownerBlockViewer = true;
     }
-	$block_check2 = "SELECT id FROM blockedusers WHERE blocker='$log_username' AND blockee='$u' LIMIT 1";
+	$block_check2 = "SELECT ID FROM blockedusers WHERE UserID='$log_username' AND UserID2='$u' LIMIT 1";
 	if(mysqli_num_rows(mysqli_query($db_conx, $block_check2)) > 0){
         $viewerBlockOwner = true;
     }
 }
 ?><?php 
-$friend_button = '<button disabled>Request As Friend</button>';
+$colleague_button = '<button disabled>Request As Colleague</button>';
 $block_button = '<button disabled>Block User</button>';
 // LOGIC FOR FRIEND BUTTON
-if($isFriend == true){
-	$friend_button = '<button onclick="friendToggle(\'unfriend\',\''.$u.'\',\'friendBtn\')">Unfriend</button>';
+if($isColleague == true){
+	$colleague_button = '<button onclick="colleagueToggle(\'uncolleague\',\''.$u.'\',\'colleagueBtn\')">Uncolleague</button>';
 } else if($user_ok == true && $u != $log_username && $ownerBlockViewer == false){
-	$friend_button = '<button onclick="friendToggle(\'friend\',\''.$u.'\',\'friendBtn\')">Request As Friend</button>';
+	$colleague_button = '<button onclick="colleagueToggle(\'colleague\',\''.$u.'\',\'colleagueBtn\')">Request As Colleague</button>';
 }
 // LOGIC FOR BLOCK BUTTON
 if($viewerBlockOwner == true){
@@ -73,50 +71,50 @@ if($viewerBlockOwner == true){
 	$block_button = '<button onclick="blockToggle(\'block\',\''.$u.'\',\'blockBtn\')">Block User</button>';
 }
 ?><?php
-$friendsHTML = '';
-$friends_view_all_link = '';
-$sql = "SELECT COUNT(id) FROM friends WHERE user1='$u' AND accepted='1' OR user2='$u' AND accepted='1'";
+$colleaguesHTML = '';
+$colleagues_view_all_link = '';
+$sql = "SELECT COUNT(ID) FROM friends WHERE UserID='$u' AND accepted='1' OR UserID2='$u' AND accepted='1'";
 $query = mysqli_query($db_conx, $sql);
 $query_count = mysqli_fetch_row($query);
-$friend_count = $query_count[0];
-if($friend_count < 1){
-	$friendsHTML = $u." has no friends yet";
+$colleague_count = $query_count[0];
+if($colleague_count < 1){
+	$colleaguesHTML = $u." has no colleagues yet";
 } else {
 	$max = 18;
-	$all_friends = array();
-	$sql = "SELECT user1 FROM friends WHERE user2='$u' AND accepted='1' ORDER BY RAND() LIMIT $max";
+	$all_colleagues = array();
+	$sql = "SELECT UserID FROM colleagues WHERE UserID2='$u' AND accepted='1' ORDER BY RAND() LIMIT $max";
 	$query = mysqli_query($db_conx, $sql);
 	while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
-		array_push($all_friends, $row["user1"]);
+		array_push($all_colleagues, $row["UserID"]);
 	}
-	$sql = "SELECT user2 FROM friends WHERE user1='$u' AND accepted='1' ORDER BY RAND() LIMIT $max";
+	$sql = "SELECT UserID2 FROM colleagues WHERE UserID ='$u' AND accepted='1' ORDER BY RAND() LIMIT $max";
 	$query = mysqli_query($db_conx, $sql);
 	while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
-		array_push($all_friends, $row["user2"]);
+		array_push($all_colleagues, $row["UserID2"]);
 	}
-	$friendArrayCount = count($all_friends);
-	if($friendArrayCount > $max){
-		array_splice($all_friends, $max);
+	$colleagueArrayCount = count($all_colleagues);
+	if($colleagueArrayCount > $max){
+		array_splice($all_colleagues, $max);
 	}
-	if($friend_count > $max){
-		$friends_view_all_link = '<a href="view_friends.php?u='.$u.'">view all</a>';
+	if($colleague_count > $max){
+		$colleagues_view_all_link = '<a href="view_colleagues.php?u='.$u.'">view all</a>';
 	}
 	$orLogic = '';
-	foreach($all_friends as $key => $user){
-			$orLogic .= "username='$user' OR ";
+	foreach($all_colleagues as $key => $user){
+			$orLogic .= "UserID='$user' OR ";
 	}
 	$orLogic = chop($orLogic, "OR ");
-	$sql = "SELECT username, avatar FROM users WHERE $orLogic";
+	$sql = "SELECT UserID, Picture FROM users WHERE $orLogic";
 	$query = mysqli_query($db_conx, $sql);
 	while($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
-		$friend_username = $row["username"];
-		$friend_avatar = $row["avatar"];
+		$colleagues_username = $row["FirstName"] +" "+ $row["LastName"];
+		$colleagues_picture = $row["Picture"];
 		if($friend_avatar != ""){
-			$friend_pic = 'user/'.$friend_username.'/'.$friend_avatar.'';
+			$colleague_pic = 'user/'.$colleagues_username.'/'.$colleagues_picture.'';
 		} else {
-			$friend_pic = 'images/avatardefault.jpg';
+			$colleague_pic = 'images/avatardefault.jpg';
 		}
-		$friendsHTML .= '<a href="user.php?u='.$friend_username.'"><img class="friendpics" src="'.$friend_pic.'" alt="'.$friend_username.'" title="'.$friend_username.'"></a>';
+		$colleaguesHTML .= '<a href="user.php?u='.$colleagues_username.'"><img class="colleaguepics" src="'.$colleague_pic.'" alt="'.$colleagues_username.'" title="'.$colleagues_username.'"></a>';
 	}
 }
 ?>
@@ -133,19 +131,19 @@ img.friendpics{border:#000 1px solid; width:40px; height:40px; margin:2px;}
 <script src="js/main.js"></script>
 <script src="js/ajax.js"></script>
 <script type="text/javascript">
-function friendToggle(type,user,elem){
+function colleagueToggle(type,user,elem){
 	var conf = confirm("Press OK to confirm the '"+type+"' action for user <?php echo $u; ?>.");
 	if(conf != true){
 		return false;
 	}
 	_(elem).innerHTML = 'please wait ...';
-	var ajax = ajaxObj("POST", "php_parsers/friend_system.php");
+	var ajax = ajaxObj("POST", "php_parsers/COLLEAGUES_System.php");
 	ajax.onreadystatechange = function() {
 		if(ajaxReturn(ajax) == true) {
-			if(ajax.responseText == "friend_request_sent"){
-				_(elem).innerHTML = 'OK Friend Request Sent';
-			} else if(ajax.responseText == "unfriend_ok"){
-				_(elem).innerHTML = '<button onclick="friendToggle(\'friend\',\'<?php echo $u; ?>\',\'friendBtn\')">Request As Friend</button>';
+			if(ajax.responseText == "colleague_request_sent"){
+				_(elem).innerHTML = 'OK Colleague Request Sent';
+			} else if(ajax.responseText == "uncolleague_ok"){
+				_(elem).innerHTML = '<button onclick="colleagueToggle(\'colleague\',\'<?php echo $u; ?>\',\'colleagueBtn\')">Request As Colleague</button>';
 			} else {
 				alert(ajax.responseText);
 				_(elem).innerHTML = 'Try again later';
@@ -184,15 +182,14 @@ function blockToggle(type,blockee,elem){
   <h2><?php echo $u; ?></h2>
   <p>Is the viewer the page owner, logged in and verified? <b><?php echo $isOwner; ?></b></p>
   <p>First name: <?php echo $firstname; ?></p>
-  <p>Country: <?php echo $country; ?></p>
-  <p>User Level: <?php echo $userlevel; ?></p>
-  <p>Join Date: <?php echo $joindate; ?></p>
-  <p>Last Session: <?php echo $lastsession; ?></p>
+  <p>Last Name: <?php echo $lastname; ?></p>
+  <p>State: <?php echo $state; ?></p>
+  <p>City: <?php echo $city; ?></p>
   <hr />
-  <p>Friend Button: <span id="friendBtn"><?php echo $friend_button; ?></span> <?php echo $u." has ".$friend_count." friends"; ?> <?php echo $friends_view_all_link; ?></p>
+  <p>Colleague Button: <span id="colleagueBtn"><?php echo $colleague_button; ?></span> <?php echo $u." has ".$colleague_count." colleagues"; ?> <?php echo $colleagues_view_all_link; ?></p>
   <p>Block Button: <span id="blockBtn"><?php echo $block_button; ?></span></p>
   <hr />
-  <p><?php echo $friendsHTML; ?></p>
+  <p><?php echo $colleaguesHTML; ?></p>
 </div>
 <?php include_once("template_pageBottom.php"); ?>
 </body>
