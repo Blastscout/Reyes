@@ -1,5 +1,16 @@
 <?php
-include_once("php_includes/check_login_status.php");
+$servername = "127.0.0.1";
+$username = "root";
+$password = "mysql";
+$dbname = "reyesdb";
+
+$email = $_POST['email'];
+$pass = $_POST['psw'];
+
+$db_conx = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if (!$db_conx) {
+ die("Connection failed: " . mysqli_connect_error());
 // Initialize any variables that the page might echo
 $u = "";
 $firstname = "";
