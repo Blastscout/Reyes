@@ -11,7 +11,7 @@ $yearslicensed = "";
 if(isset($_GET["u"])){
 	$u = preg_replace('#[^a-z0-9]#i', '', $_GET['u']);
 } else {
-    header("location: http://www.yoursite.com");
+    header("location: home.php");
     exit();	
 }
 // Select the member from the users table
@@ -107,7 +107,7 @@ if($colleague_count < 1){
 	$sql = "SELECT UserID, Picture FROM users WHERE $orLogic";
 	$query = mysqli_query($db_conx, $sql);
 	while($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
-		$colleagues_username = $row["FirstName"] " " $row["LastName"];
+		$colleagues_username = $row["FirstName"]; echo " "; $row["LastName"];
 		$colleague_picture = $row["Picture"];
 		if($colleague_pic != ""){
 			$colleague_pic = 'user/'.$colleagues_username.'/'.$colleague_picture.'';
