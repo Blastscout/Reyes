@@ -70,10 +70,10 @@ if(!isset($ret['UserID'])){
   <nav id="mainav" class="hoc clear"> 
     <!-- ################################################################################################ -->
     <ul class="clear">
-      <li class="active"><a href="index.html">Home</a></li>
+      <li class="active"><a href="home.php">Home</a></li>
       <li><a class="drop" href="#">Explore</a>
         <ul>
-          <li><a href=BROWSEAGENTS.html>Browse Agents</a></li>
+          <li><a href=BROWSEAGENTS.php>Browse Agents</a></li>
           <li><a href=ABOUT.html>What Does this Site Do?</a></li>
           <li><a href=TUTORIAL.html>Get Started Here</a></li>
           <li><a href=CONTACT.html>Our Socia Medias</a></li>
@@ -82,7 +82,7 @@ if(!isset($ret['UserID'])){
       </li>
       <li><a class="drop" href="#">Browse Agents</a>
         <ul>
-          <li><a href=BROWSEAGENTS.html>Browse Agents...</a></li>
+          <li><a href=BROWSEAGENTS.php>Browse Agents...</a></li>
           <li><a class="drop" href="#">Browse Agents By Filter...</a>
             <ul>
               <li><a href=BROWSEAGENTSLOCATION.html>By Location</a></li>
