@@ -1,5 +1,14 @@
 <?php
-include_once("../php_includes/check_login_status.php");
+//connection
+$servername = "localhost";
+$username = "root";
+$password = "mysql";
+$dbname = "reyesdb";
+
+$db_conx = new mysqli($servername, $username, $password, $dbname);
+if($db_conx->connect_error){
+	die("Connection Failed : " .$conn->connect_error);
+	}
 if($user_ok != true || $log_username == "") {
 	exit();
 }
