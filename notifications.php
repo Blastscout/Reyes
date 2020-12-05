@@ -1,4 +1,13 @@
-include_once("php_includes/check_login_status.php");
+//connection
+$servername = "localhost";
+$username = "root";
+$password = "mysql";
+$dbname = "reyesdb";
+
+$db_conx = new mysqli($servername, $username, $password, $dbname);
+if($db_conx->connect_error){
+	die("Connection Failed : " .$conn->connect_error);
+	}
 // If the page requestor is not logged in, usher them away
 if($user_ok != true || $log_username == ""){
 	header("location: http://www.yoursite.com");
