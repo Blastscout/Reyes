@@ -1,27 +1,12 @@
-<<<<<<< Updated upstream
-//connection
-$servername = "localhost";
-=======
 <?php
 $servername = "127.0.0.1";
->>>>>>> Stashed changes
 $username = "root";
 $password = "mysql";
 $dbname = "reyesdb";
-
 $db_conx = new mysqli($servername, $username, $password, $dbname);
-<<<<<<< Updated upstream
-if($db_conx->connect_error){
-	die("Connection Failed : " .$conn->connect_error);
-	}
-// If the page requestor is not logged in, usher them away
-if($user_ok != true || $log_username == ""){
-	header("location: http://www.yoursite.com");
-    exit();
-}
-=======
 
->>>>>>> Stashed changes
+
+
 $notification_list = "";
 $sql = "SELECT * FROM notifications WHERE UserID LIKE BINARY '$log_username' ORDER BY date_time DESC";
 $result = $db_conx->query($sql);

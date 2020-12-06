@@ -1,14 +1,14 @@
+<!DOCTYPE html>
 <?php
-include_once('notifications.php');
 session_start();
 $ret = $_SESSION['row'];
 if(!isset($ret['UserID'])){
 	header('location:login.html');
 	}
 ?>
-<html>
+<html lang="">
 <head>
-<title> Your Profile </title>
+<title>REYES REAL ESTATE NETWORK</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
@@ -31,7 +31,7 @@ if(!isset($ret['UserID'])){
     </div>
     <div class="fl_right">
       <ul class="nospace">
-        <li>Signed in as: </li>
+      <li>Signed in as: </li>
         <li><?php echo $ret['FirstName']; echo " "; echo $ret['LastName'];?></li>
       </ul>
     </div>
@@ -74,11 +74,12 @@ if(!isset($ret['UserID'])){
       <li class="active"><a href="home.php">Home</a></li>
       <li><a class="drop" href="#">Explore</a>
         <ul>
-          <li><a href=BROWSEAGENTS.php>Browse Agents</a></li>
-          <li><a href=ABOUT.html>What Does this Site Do?</a></li>
-          <li><a href=TUTORIAL.html>Get Started Here</a></li>
-          <li><a href=CONTACT.html>Our Socia Medias</a></li>
-          <li><a href=CONTACT.html>Contact Us </a></li>
+          <li><a href="pages/gallery.html">Agent Gallery</a></li>
+          <li><a href="pages/full-width.html">full-width</a></li>
+          <li><a href="pages/sidebar-left.html">leftsidebar</a></li>
+          <li><a href="pages/sidebar-right.html">Sidebar Right</a></li>
+          <li><a href="pages/basic-grid.html">Basic Grid</a></li>
+          <li><a href="pages/font-icons.html">Font Icons</a></li>
         </ul>
       </li>
       <li><a class="drop" href="#">Browse Agents</a>
@@ -87,30 +88,63 @@ if(!isset($ret['UserID'])){
           <li><a class="drop" href="#">Browse Agents By Filter...</a>
             <ul>
               <li><a href=BROWSEAGENTSLOCATION.php>By Location</a></li>
-              <li><a href=BROWSEAGENTSRATING.html>By Rating</a></li>
-              <li><a href=BROWSEAGENTSEXP.php>By Years of Experience</a></li>
+              <li><a href=BROWSEAGENTSRATING.php>By Rating</a></li>
+              <li><a href=BROWSEAGENTSEXP.html>By Years of Experience</a></li>
             </ul>
           </li>
         </ul>
       </li>
-      <li><a href="#">Get Started Here</a></li>
-      <li><a href="#">Our Socia Medias</a></li>
-      <li><a href="#">What Does this Site Do?</a></li>
+      <li><a href="#">Link Text</a></li>
+      <li><a href="#">Link Text</a></li>
+      <li><a href="#">Link Text</a></li>
+      <li><a href="#">Long Link Text</a></li>
     </ul>
     <!-- ################################################################################################ -->
   </nav>
 </div>
-</head>
-<body>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
 <div class="wrapper row3">
   <main class="hoc container clear"> 
     <!-- main body -->
     <!-- ################################################################################################ -->
     <div class="content"> 
-<div class="container">
-
-</div>
-</div>
+<h1><u>Browse Agents By Location</u></h1>
+      <div class="scrollable">
+        <table>
+        <thead>
+            <tr>
+            <th>Name</th>
+              <th>Location</th>
+   			  <th>Years with Real Estate License</th>
+			  <th>E-mail</th>
+            </tr>
+            <?php
+			$servername = "127.0.0.1";
+			$username = "root";
+			$password = "mysql";
+			$dbname = "reyesdb";
+      $conn = new mysqli($servername, $username, $password, $dbname);
+      $ID = $ret['UserID'];
+			$sql = "Select FirstName,LastName, YearsLicensed,City,State,Email from users where UserID != $ID ORDER BY State";
+			$result = $conn->query($sql);
+			if ($result->num_rows>0){
+				while ($row = $result-> fetch_assoc()){
+          $User = $row['UserID'];
+					echo"<tr><td><a href='user.php?u=$User'>".$row['FirstName']." ". $row['LastName']."</a></td><td>".$row['City'].", ".$row['State']."</td><td>".$row['YearsLicensed']."</td><td>".$row['Email']."</td></tr>";
+					}
+				echo "</table>";
+				}
+			else{
+				echo "No results";
+				}
+			$conn->close();
+			?>
+        </table>
+      </div>
+	 </div>
+  </div>
 </div>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
@@ -118,7 +152,7 @@ if(!isset($ret['UserID'])){
 <div class="wrapper row4">
   <footer id="footer" class="hoc clear"> 
     <!-- ################################################################################################ -->
-    <div class="one_quarter first">
+  <div class="one_quarter first">
       <h6 class="heading">Contact Us</h6>
       <ul class="nospace btmspace-30 linklist contact">
         <li><i class="fas fa-map-marker-alt"></i>
@@ -142,6 +176,14 @@ if(!isset($ret['UserID'])){
         <li><a href="#">Company Information</a></li>
         <li><a href="#">Careers</a></li>
         <li><a href="#">Sitemap</a></li>
+      </ul>
+    </div>
+    <div class="one_quarter">
+      <h6 class="heading">Privacy</h6>
+      <ul class="nospace linklist">
+        <li><a href="#">Private Policy</a></li>
+        <li><a href="#">Documens & Policies</a></li>
+        <li><a href="#">Terms of Use</a></li>
       </ul>
     </div>
     <div class="one_quarter">
@@ -178,5 +220,4 @@ if(!isset($ret['UserID'])){
 <script src="layout/scripts/jquery.backtotop.js"></script>
 <script src="layout/scripts/jquery.mobilemenu.js"></script>
 </body>
-
 </html>
