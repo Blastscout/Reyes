@@ -1,8 +1,18 @@
 <?php
+if(isset($_GET["u"])){
+	$u = (int)$_GET["u"];
+} else {
+    header("location: home.php");
+    exit();	
+}
+?>
+<?php
+
 $servername = "127.0.0.1";
 $username = "root";
 $password = "mysql";
 $dbname = "reyesdb";
+session_start();
 
 $email = $_POST['email'];
 $pass = $_POST['psw'];
@@ -13,26 +23,20 @@ if (!$db_conx) {
  die("Connection failed: " . mysqli_connect_error());
 }
 // Initialize any variables that the page might echo
-$u = "";
 $firstname = "";
 $lastname = "";
 $state = "";
 $city = "";
 $yearslicensed = "";
 // Make sure the _GET UserID is set, and sanitize it
-if(isset($_GET["u"])){
-	$u = preg_replace('#[^a-z0-9]#i', '', $_GET['u']);
-} else {
-    header("location: home.php");
-    exit();	
-}
+
 // Select the member from the users table
 $sql = "SELECT * FROM users WHERE UserID ='$u' LIMIT 1";
 $user_query = mysqli_query($db_conx, $sql);
 // Now make sure that user exists in the table
 $numrows = $user_query->num_rows;
 if($numrows < 1){
-	echo "That user does not exist or is not yet activated, press back";
+	echo "$u That user does not exist or is not yet activated, press back";
     exit();	
 }
 // Check to see if the viewer is the account owner

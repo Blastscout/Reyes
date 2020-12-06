@@ -50,23 +50,6 @@ CREATE TABLE `colleagues` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
-
---
---Table structure for table `notifactions`
---
-CREATE TABLE `notifactions` (
-  `ID` INT(11) NOT NULL,
-  `UserID` int(11) NOT NULL,
-  `initiator` VARCHAR(16) NOT NUll,
-  `app` VARCHAR(255) NOT NULL,
-  `note` VARCHAR(255) NOT NULL,
-  `did_read` ENUM('0','1') NOT NULL DEFAULT '0',
-  `date_time` DATETIME NOT NULL
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `comments`
 --
 
@@ -77,7 +60,15 @@ CREATE TABLE `comments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
-
+CREATE TABLE `notifications` (
+ `ID` INT(11) NOT NULL,
+`UserID` INT(11) NOT NULL,
+`initiator` VARCHAR(16) NOT NUll,
+`app` VARCHAR(255) NOT NULL,
+`note` VARCHAR(255) NOT NULL,
+`did_read` INT(1) NOT NULL,
+`date_time` DATETIME NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 --
 -- Table structure for table `messages`
 --

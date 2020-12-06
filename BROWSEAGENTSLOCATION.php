@@ -128,7 +128,7 @@ if(!isset($ret['UserID'])){
 			$dbname = "reyesdb";
       $conn = new mysqli($servername, $username, $password, $dbname);
       $ID = $ret['UserID'];
-			$sql = "Select FirstName,LastName, YearsLicensed,City,State,Email from users where UserID != $ID ORDER BY State";
+			$sql = "Select UserID,FirstName,LastName, YearsLicensed,City,State,Email from users where UserID != $ID ORDER BY State";
 			$result = $conn->query($sql);
 			if ($result->num_rows>0){
 				while ($row = $result-> fetch_assoc()){

@@ -26,7 +26,7 @@ if($numrows < 1){
 		$notification_list .= "<p><a href='user.php?u=$initiator'>$initiator</a> | $app<br />$note</p>";
 	}
 }
-mysqli_query($db_conx, "UPDATE users SET notescheck=now() WHERE UserID='$log_username' LIMIT 1");
+
 ?><?php
 $colleague_requests = "";
 $sql = "SELECT * FROM colleagues WHERE UserID2='$log_username' AND accepted='0' ORDER BY Datemade ASC";

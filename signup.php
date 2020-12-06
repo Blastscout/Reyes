@@ -20,6 +20,7 @@ $state = $_POST["state"];
 $city = $_POST["city"];
 $years = $_POST["years"];
 $pass = $_POST["psw"];
+
 //Hashes password
 //$hashed = password_hash($pass, PASSWORD_DEFAULT);
 $table = "SELECT * from users where Email= '$email'";

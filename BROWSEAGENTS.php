@@ -129,13 +129,14 @@ if(!isset($ret['UserID'])){
 			$dbname = "reyesdb";
       $conn = new mysqli($servername, $username, $password, $dbname);
       $ID = $ret['UserID'];
-			$sql = "Select FirstName,LastName, YearsLicensed,City,State,Email from users where UserID != $ID";
+			$sql = "Select UserID,FirstName,LastName, YearsLicensed,City,State,Email from users where UserID != $ID";
 			$result = $conn->query($sql);
 			if ($result->num_rows>0){
 				while ($row = $result-> fetch_assoc()){
           $User = $row['UserID'];
-					echo"<tr><td><a href='user.php?u=$User'>".$row['FirstName']." ". $row['LastName']."</a></td><td>".$row['City'].", ".$row['State']."</td><td>".$row['YearsLicensed']."</td><td>".$row['Email']."</td></tr>";
-					}
+					echo"<tr><td><a href='./user.php?u=$User>".$row['FirstName']." ". $row['LastName']."</a></td><td>".$row['City'].", ".$row['State']."</td><td>".$row['YearsLicensed']."</td><td>".$row['Email']."</td></tr>";
+          
+        }
 				echo "</table>";
 				}
 			else{
