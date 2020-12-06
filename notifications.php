@@ -1,10 +1,16 @@
+<<<<<<< Updated upstream
 //connection
 $servername = "localhost";
+=======
+<?php
+$servername = "127.0.0.1";
+>>>>>>> Stashed changes
 $username = "root";
 $password = "mysql";
 $dbname = "reyesdb";
 
 $db_conx = new mysqli($servername, $username, $password, $dbname);
+<<<<<<< Updated upstream
 if($db_conx->connect_error){
 	die("Connection Failed : " .$conn->connect_error);
 	}
@@ -13,10 +19,13 @@ if($user_ok != true || $log_username == ""){
 	header("location: http://www.yoursite.com");
     exit();
 }
+=======
+
+>>>>>>> Stashed changes
 $notification_list = "";
 $sql = "SELECT * FROM notifications WHERE UserID LIKE BINARY '$log_username' ORDER BY date_time DESC";
-$query = mysqli_query($db_conx, $sql);
-$numrows = mysqli_num_rows($query);
+$result = $db_conx->query($sql);
+$numrows = $result->num_rows;
 if($numrows < 1){
 	$notification_list = "You do not have any notifications";
 } else {
@@ -34,8 +43,8 @@ mysqli_query($db_conx, "UPDATE users SET notescheck=now() WHERE UserID='$log_use
 ?><?php
 $colleague_requests = "";
 $sql = "SELECT * FROM colleagues WHERE UserID2='$log_username' AND accepted='0' ORDER BY Datemade ASC";
-$query = mysqli_query($db_conx, $sql);
-$numrows = mysqli_num_rows($query);
+$result = $db_conx->query($sql);
+$numrows = $result->num_rows;
 if($numrows < 1){
 	$colleague_requests = 'No colleague requests';
 } else {
@@ -101,7 +110,6 @@ function colleagueReqHandler(action,reqid,user1,elem){
 </script>
 </head>
 <body>
-<?php include_once("template_pageTop.php"); ?>
 <div id="pageMiddle">
   <!-- START Page Content -->
   <div id="notesBox"><h2>Notifications</h2><?php echo $notification_list; ?></div>
@@ -109,6 +117,5 @@ function colleagueReqHandler(action,reqid,user1,elem){
   <div style="clear:left;"></div>
   <!-- END Page Content -->
 </div>
-<?php include_once("template_pageBottom.php"); ?>
 </body>
 </html>
