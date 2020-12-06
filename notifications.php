@@ -291,5 +291,4 @@ function colleagueReqHandler(action,reqid,user1,elem){
 <script src="layout/scripts/jquery.backtotop.js"></script>
 <script src="layout/scripts/jquery.mobilemenu.js"></script>
 </body>
-</body>
 </html>
