@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `blockedusers` (
-  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `ID` INT(11) NOT NULL,
   `blockdate` DATETIME NOT NULL,
   `UserID` int(11) NOT NULL,
   `UserID2` int(11) NOT NULL
@@ -42,7 +42,7 @@ CREATE TABLE `blockedusers` (
 --
 
 CREATE TABLE `colleagues` (
-  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `ID` INT(11) NOT NULL,
   `Datemade` DATETIME NOT NULL,
   `Accepted` ENUM('0','1') NOT NULL DEFAULT '0',
   `UserID` int(11) NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE `colleagues` (
 --Table structure for table `notifactions`
 --
 CREATE TABLE `notifactions` (
-  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `ID` INT(11) NOT NULL
   `UserID` int(11) NOT NULL,
   `initiator` VARCHAR(16) NOT NUll,
   `app` VARCHAR(255) NOT NULL,
@@ -201,6 +201,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `blockedusers`
+--
+ALTER TABLE `blockedusers`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `colleagues`
+--
+ALTER TABLE `colleagues`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;  
+
+
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;  
+  
 --
 -- AUTO_INCREMENT for table `statuses`
 --
