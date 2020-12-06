@@ -32,7 +32,7 @@ if(!isset($ret['UserID'])){
       <ul class="nospace">
         <li>Signed in as: </li>
         <li><?php echo $ret['FirstName']; echo " "; echo $ret['LastName'];?></li>
-        <li> <?php include_once('notifications.php');?> </li>
+        <li> <a href="notifications.php"> Notifications</a> </li>
       </ul>
     </div>
     <!-- ################################################################################################ -->

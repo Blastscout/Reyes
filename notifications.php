@@ -4,6 +4,8 @@ $username = "root";
 $password = "mysql";
 $dbname = "reyesdb";
 $db_conx = new mysqli($servername, $username, $password, $dbname);
+session_start();
+$ret = $_SESSION['row'];
 
 
 
@@ -86,15 +88,17 @@ input[type=text], input[type=password] {
         <li><a href="index.html"><i class="fas fa-home fa-lg"></i></a></li>
         <li><a href="#">About</a></li>
         <li><a href="mailto:ogorzalm@go.stockton.edu">Contact</a></li>
-        <li><a href=LOGIN.html>Login</a></li>
-        <li><a href=SIGN-UPPAGE.html>Register</a></li>
-		<li><a href=complaintForm.html>File Complaint</a></li>
+        <li><a href=complaintForm.html>File Complaint</a></li>
+		    <li><a href="logout.php">LOGOUT</a></li>
+
       </ul>
     </div>
     <div class="fl_right">
       <ul class="nospace">
-        <li><i class="fas fa-phone rgtspace-5"></i> +00 (123) 456 7890</li>
-        <li><i class="fas fa-envelope rgtspace-5"></i> <a href="mailto:ogorzalm@go.stockton.edu">ogorzalm@go.stockton.edu</a></li>
+        <li>Signed in as: </li>
+        <li><?php echo $ret['FirstName']; echo " "; echo $ret['LastName'];?></li>
+        <li> <a href="notifications.php"> Notifications</a> </li>
+
       </ul>
     </div>
     <!-- ################################################################################################ -->
