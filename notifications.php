@@ -85,7 +85,7 @@ input[type=text], input[type=password] {
     <!-- ################################################################################################ -->
     <div class="fl_left">
       <ul class="nospace">
-        <li><a href="index.html"><i class="fas fa-home fa-lg"></i></a></li>
+        <li><a href="home.php"><i class="fas fa-home fa-lg"></i></a></li>
         <li><a href="#">About</a></li>
         <li><a href="mailto:ogorzalm@go.stockton.edu">Contact</a></li>
         <li><a href=complaintForm.html>File Complaint</a></li>
