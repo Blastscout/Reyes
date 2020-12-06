@@ -66,7 +66,7 @@ CREATE TABLE `notifications` (
 `initiator` VARCHAR(16) NOT NUll,
 `app` VARCHAR(255) NOT NULL,
 `note` VARCHAR(255) NOT NULL,
-`did_read` INT(1) NOT NULL,
+`did_read` ENUM('0','1') NOT NULL DEFAULT '0',,
 `date_time` DATETIME NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 --
@@ -124,7 +124,7 @@ CREATE TABLE `users` (
   `City` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
   `YearsLicensed` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
   `Picture` longblob,
-  `notescheck` DATETIME NOT NULL
+  `notescheck` DATETIME
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
