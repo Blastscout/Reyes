@@ -55,7 +55,7 @@ CREATE TABLE `colleagues` (
 --Table structure for table `notifactions`
 --
 CREATE TABLE `notifactions` (
-  `ID` INT(11) NOT NULL
+  `ID` INT(11) NOT NULL,
   `UserID` int(11) NOT NULL,
   `initiator` VARCHAR(16) NOT NUll,
   `app` VARCHAR(255) NOT NULL,
