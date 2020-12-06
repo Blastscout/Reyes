@@ -246,9 +246,9 @@ input[type=text], input[type=password] {
     <!-- main body -->
     <!-- ################################################################################################ -->
     <div class="content"> 
-<h1><u>Your Profile</u></h1>
+<h1><u>Profile</u></h1>
 <meta charset="UTF-8">
-<title><?php echo $u; ?></title>
+<title><?php echo $firstname ." " $lastname; ?></title>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="style/style.css">
 <style type="text/css">
@@ -258,7 +258,7 @@ img.colleaguepics{border:#000 1px solid; width:40px; height:40px; margin:2px;}
 <script src="js/ajax.js"></script>
 <script type="text/javascript">
 function colleagueToggle(type,user,elem){
-	var conf = confirm("Press OK to confirm the '"+type+"' action for user <?php echo $u; ?>.");
+	var conf = confirm("Press OK to confirm the '"+type+"' action for user <?php echo $firstname; ?>.");
 	if(conf != true){
 		return false;
 	}
@@ -269,7 +269,7 @@ function colleagueToggle(type,user,elem){
 			if(ajax.responseText == "colleague_request_sent"){
 				_(elem).innerHTML = 'OK Colleague Request Sent';
 			} else if(ajax.responseText == "uncolleague_ok"){
-				_(elem).innerHTML = '<button onclick="colleagueToggle(\'colleague\',\'<?php echo $u; ?>\',\'colleagueBtn\')">Request As Colleague</button>';
+				_(elem).innerHTML = '<button onclick="colleagueToggle(\'colleague\',\'<?php echo $firstname; ?>\',\'colleagueBtn\')">Request As Colleague</button>';
 			} else {
 				alert(ajax.responseText);
 				_(elem).innerHTML = 'Try again later';
@@ -279,7 +279,7 @@ function colleagueToggle(type,user,elem){
 	ajax.send("type="+type+"&user="+user);
 }
 function blockToggle(type,blockee,elem){
-	var conf = confirm("Press OK to confirm the '"+type+"' action on user <?php echo $u; ?>.");
+	var conf = confirm("Press OK to confirm the '"+type+"' action on user <?php echo $firstname; ?>.");
 	if(conf != true){
 		return false;
 	}
@@ -289,9 +289,9 @@ function blockToggle(type,blockee,elem){
 	ajax.onreadystatechange = function() {
 		if(ajaxReturn(ajax) == true) {
 			if(ajax.responseText == "blocked_ok"){
-				elem.innerHTML = '<button onclick="blockToggle(\'unblock\',\'<?php echo $u; ?>\',\'blockBtn\')">Unblock User</button>';
+				elem.innerHTML = '<button onclick="blockToggle(\'unblock\',\'<?php echo $firstname; ?>\',\'blockBtn\')">Unblock User</button>';
 			} else if(ajax.responseText == "unblocked_ok"){
-				elem.innerHTML = '<button onclick="blockToggle(\'block\',\'<?php echo $u; ?>\',\'blockBtn\')">Block User</button>';
+				elem.innerHTML = '<button onclick="blockToggle(\'block\',\'<?php echo $firstname; ?>\',\'blockBtn\')">Block User</button>';
 			} else {
 				alert(ajax.responseText);
 				elem.innerHTML = 'Try again later';
@@ -304,14 +304,11 @@ function blockToggle(type,blockee,elem){
 </head>
 <body>
 <div id="pageMiddle">
-  <h2><?php echo $u; ?></h2>
-  <p>Is the viewer the page owner, logged in and verified? <b><?php echo $isOwner; ?></b></p>
-  <p>First name: <?php echo $firstname; ?></p>
-  <p>Last Name: <?php echo $lastname; ?></p>
+  <h2><?php echo $firstname ." " $lastname; ?></h2>
   <p>State: <?php echo $state; ?></p>
   <p>City: <?php echo $city; ?></p>
   <hr />
-  <p>Colleague Button: <span id="colleagueBtn"><?php echo $colleague_button; ?></span> <?php echo $u." has ".$colleague_count." colleagues"; ?> <?php echo $colleagues_view_all_link; ?></p>
+  <p>Colleague Button: <span id="colleagueBtn"><?php echo $colleague_button; ?></span> <?php echo $firstname." has ".$colleague_count." colleagues"; ?> <?php echo $colleagues_view_all_link; ?></p>
   <p>Block Button: <span id="blockBtn"><?php echo $block_button; ?></span></p>
   <hr />
   <p><?php echo $colleaguesHTML; ?></p>
