@@ -63,8 +63,8 @@ if($numrows < 1){
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="style/style.css">
 <style type="text/css">
-div#notesBox{float:left; width:430px; border:#F0F 1px dashed; margin-right:60px; padding:10px;}
-div#colleagueReqBox{float:left; width:430px; border:#F0F 1px dashed; padding:10px;}
+div#notesBox{float:left; width:200px; border:#F0F 1px dashed; margin-right:60px; padding:10px;}
+div#colleagueReqBox{float:left; width:200px; border:#F0F 1px dashed; padding:10px;}
 div.colleaguerequests{height:74px; border-bottom:#CCC 1px solid; margin-bottom:8px;}
 img.user_pic{float:left; width:68px; height:68px; margin-right:8px;}
 div.user_info{float:left; font-size:14px;}

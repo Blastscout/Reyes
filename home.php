@@ -1,5 +1,4 @@
 <?php
-include_once('notifications.php');
 session_start();
 $ret = $_SESSION['row'];
 if(!isset($ret['UserID'])){
@@ -33,6 +32,7 @@ if(!isset($ret['UserID'])){
       <ul class="nospace">
         <li>Signed in as: </li>
         <li><?php echo $ret['FirstName']; echo " "; echo $ret['LastName'];?></li>
+        <li> <?php include_once('notifications.php');?> </li>
       </ul>
     </div>
     <!-- ################################################################################################ -->
