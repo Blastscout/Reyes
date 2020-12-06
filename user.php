@@ -11,6 +11,7 @@ $db_conx = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if (!$db_conx) {
  die("Connection failed: " . mysqli_connect_error());
+}
 // Initialize any variables that the page might echo
 $u = "";
 $firstname = "";
@@ -29,7 +30,7 @@ if(isset($_GET["u"])){
 $sql = "SELECT * FROM users WHERE UserID ='$u' LIMIT 1";
 $user_query = mysqli_query($db_conx, $sql);
 // Now make sure that user exists in the table
-$numrows = mysqli_num_rows($user_query);
+$numrows = $user_query->num_rows;
 if($numrows < 1){
 	echo "That user does not exist or is not yet activated, press back";
     exit();	
@@ -41,7 +42,7 @@ if($u == $log_username && $user_ok == true){
 }
 // Fetch the user row from the query above
 while ($row = mysqli_fetch_array($user_query, MYSQLI_ASSOC)) {
-	$profile_id = $row["id"];
+	$profile_id = $row["UserID"];
 	$firstname = $row["FirstName"];
 	$lastname = $row["LastName"];
 	$state = $row["State"];
@@ -188,7 +189,6 @@ function blockToggle(type,blockee,elem){
 </script>
 </head>
 <body>
-<?php include_once("template_pageTop.php"); ?>
 <div id="pageMiddle">
   <h2><?php echo $u; ?></h2>
   <p>Is the viewer the page owner, logged in and verified? <b><?php echo $isOwner; ?></b></p>
@@ -202,6 +202,5 @@ function blockToggle(type,blockee,elem){
   <hr />
   <p><?php echo $colleaguesHTML; ?></p>
 </div>
-<?php include_once("template_pageBottom.php"); ?>
 </body>
 </html>
