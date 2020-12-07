@@ -87,13 +87,14 @@ CREATE TABLE `messages` (
 -- Table structure for table `reports`
 --
 
-CREATE TABLE `reports` (
-  `UserID` int(11) NOT NULL,
-  `UserID2` int(11) NOT NULL,
-  `DateMade` DATETIME NOT NULL,
-  `Reason` longtext COLLATE utf8mb4_general_ci NOT NULL
+CREATE TABLE reports (
+  UserID int(11) DEFAULT NULL,
+  UserID2 int(11) DEFAULT NULL,
+  Email varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
+  Complainee varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
+  DateMade datetime NOT NULL,
+  Reason longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 -- --------------------------------------------------------
 
 --
