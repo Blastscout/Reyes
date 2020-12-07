@@ -248,7 +248,7 @@ input[type=text], input[type=password] {
     <div class="content"> 
 <h1><u>Profile</u></h1>
 <meta charset="UTF-8">
-<title><?php echo $firstname ." " $lastname; ?></title>
+<title><?php echo $firstname; echo" "; echo $lastname; ?></title>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="style/style.css">
 <style type="text/css">
@@ -304,7 +304,7 @@ function blockToggle(type,blockee,elem){
 </head>
 <body>
 <div id="pageMiddle">
-  <h2><?php echo $firstname ." " $lastname; ?></h2>
+  <h2><?php echo $firstname; echo" "; echo $lastname; ?></h2>
   <p>State: <?php echo $state; ?></p>
   <p>City: <?php echo $city; ?></p>
   <hr />
