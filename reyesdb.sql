@@ -43,7 +43,6 @@ CREATE TABLE `blockedusers` (
 
 CREATE TABLE `colleagues` (
   `ID` INT(11) NOT NULL,
-  `Datemade` DATETIME NOT NULL,
   `Accepted` ENUM('0','1') NOT NULL DEFAULT '0',
   `UserID` int(11) NOT NULL,
   `UserID2` int(11) NOT NULL
