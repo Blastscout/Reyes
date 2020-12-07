@@ -13,12 +13,12 @@ if($conn->connect_error){
 	die("Connection Failed : " .$conn->connect_error);
 	}
 //create variables
-$name = $_POST["UserID"];
-$complaineeName = $_POST["UserID2"];
+$email = $_POST["Email"];
+$complaineeName = $_POST["Complainee"];
 $date = $_POST["DateMade"];
 $reason = $_POST["Reason"];
 
-$sql = "INSERT INTO reports(UserID,UserID2,DateMade,Reason)VALUES ('$name','$complaineeName','$date','$reason')";
+$sql = "INSERT INTO reports(Email,Complainee,DateMade,Reason)VALUES ('$email','$complaineeName','$date','$reason')";
 if ($conn->query($sql) === TRUE) {
    echo "<script> alert('Complaint was filed successfully.');
    window.location = 'index.html';
