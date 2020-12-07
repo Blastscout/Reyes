@@ -19,10 +19,10 @@ $pass = $_POST['psw'];
 
 $db_conx = new mysqli($servername, $username, $password, $dbname);
 // Check connection
-if (!$db_conx) {
- die("Connection failed: " . mysqli_connect_error());
-}
+
+	
 // Initialize any variables that the page might echo
+$user_ok = true; //Fix this should not be hardcoded
 $firstname = "";
 $lastname = "";
 $state = "";
@@ -73,13 +73,13 @@ if($u != $log_username && $user_ok == true){
     }
 }
 ?><?php 
-$colleague_button = '<button disabled>Request As Colleague</button>';
-$block_button = '<button disabled>Block User</button>';
+$colleague_button = '<button>Request As Colleague</button>';
+$block_button = '<button>Block User</button>';
 // LOGIC FOR Colleague BUTTON
 if($isColleague == true){
-	$colleague_button = '<button onclick="colleagueToggle(\'uncolleague\',\''.$u.'\',\'colleagueBtn\')">Uncolleague</button>';
+	$colleague_button = '<button onclick="query()(">Uncolleague</button>';
 } else if($user_ok == true && $u != $log_username && $ownerBlockViewer == false){
-	$colleague_button = '<button onclick="colleagueToggle(\'colleague\',\''.$u.'\',\'colleagueBtn\')">Request As Colleague</button>';
+	$colleague_button = '<button onclick="query("INSERT INTO colleagues(UserID, UserID2)VALUES($u, $log_username) LIMIT 1")">Request As Colleague </button>';
 }
 // LOGIC FOR BLOCK BUTTON
 if($viewerBlockOwner == true){
@@ -95,7 +95,7 @@ $query = mysqli_query($db_conx, $sql);
 $query_count = mysqli_fetch_row($query);
 $colleague_count = $query_count[0];
 if($colleague_count < 1){
-	$colleaguesHTML = $u." has no colleagues yet";
+	$colleaguesHTML = $firstname." has no colleagues yet";
 } else {
 	$max = 18;
 	$all_colleagues = array();
@@ -114,7 +114,7 @@ if($colleague_count < 1){
 		array_splice($all_colleagues, $max);
 	}
 	if($colleague_count > $max){
-		$colleagues_view_all_link = '<a href="view_colleagues.php?u='.$u.'">view all</a>';
+		$colleagues_view_all_link = '<a href="view_colleagues.php?u='.$firstname.'">view all</a>';
 	}
 	$orLogic = '';
 	foreach($all_colleagues as $key => $user){
@@ -131,7 +131,7 @@ if($colleague_count < 1){
 		} else {
 			$colleague_pic = 'images/avatar.png';
 		}
-		$colleaguesHTML .= '<a href="user.php?u='.$colleagues_username.'"><img class="colleaguepics" src="'.$colleague_pic.'" alt="'.$colleagues_username.'" title="'.$colleagues_username.'"></a>';
+		$colleaguesHTML .= '<a href="user.php?u='.$u.'"><img class="colleaguepics" src="'.$colleague_pic.'" alt="'.$colleagues_username.'" title="'.$colleagues_username.'"></a>';
 	}
 }
 ?>
@@ -248,7 +248,7 @@ input[type=text], input[type=password] {
     <div class="content"> 
 <h1><u>Profile</u></h1>
 <meta charset="UTF-8">
-<title><?php echo $firstname; echo" "; echo $lastname; ?></title>
+<title><?php echo $firstname; ?></title>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="style/style.css">
 <style type="text/css">
@@ -257,27 +257,7 @@ img.colleaguepics{border:#000 1px solid; width:40px; height:40px; margin:2px;}
 <script src="js/main.js"></script>
 <script src="js/ajax.js"></script>
 <script type="text/javascript">
-function colleagueToggle(type,user,elem){
-	var conf = confirm("Press OK to confirm the '"+type+"' action for user <?php echo $firstname; ?>.");
-	if(conf != true){
-		return false;
-	}
-	_(elem).innerHTML = 'please wait ...';
-	var ajax = ajaxObj("POST", "php_parsers/COLLEAGUES_System.php");
-	ajax.onreadystatechange = function() {
-		if(ajaxReturn(ajax) == true) {
-			if(ajax.responseText == "colleague_request_sent"){
-				_(elem).innerHTML = 'OK Colleague Request Sent';
-			} else if(ajax.responseText == "uncolleague_ok"){
-				_(elem).innerHTML = '<button onclick="colleagueToggle(\'colleague\',\'<?php echo $firstname; ?>\',\'colleagueBtn\')">Request As Colleague</button>';
-			} else {
-				alert(ajax.responseText);
-				_(elem).innerHTML = 'Try again later';
-			}
-		}
-	}
-	ajax.send("type="+type+"&user="+user);
-}
+
 function blockToggle(type,blockee,elem){
 	var conf = confirm("Press OK to confirm the '"+type+"' action on user <?php echo $firstname; ?>.");
 	if(conf != true){
@@ -304,11 +284,11 @@ function blockToggle(type,blockee,elem){
 </head>
 <body>
 <div id="pageMiddle">
-  <h2><?php echo $firstname; echo" "; echo $lastname; ?></h2>
+  <h2><?php echo $firstname." ".$lastname; ?></h2>
   <p>State: <?php echo $state; ?></p>
   <p>City: <?php echo $city; ?></p>
   <hr />
-  <p>Colleague Button: <span id="colleagueBtn"><?php echo $colleague_button; ?></span> <?php echo $firstname." has ".$colleague_count." colleagues"; ?> <?php echo $colleagues_view_all_link; ?></p>
+  <p>Colleague Button: <span id="colleagueBtn"> <?php echo $colleague_button; ?></span> <?php echo $firstname." has ".$colleague_count." colleagues"; ?> <?php echo $colleagues_view_all_link; ?></p>
   <p>Block Button: <span id="blockBtn"><?php echo $block_button; ?></span></p>
   <hr />
   <p><?php echo $colleaguesHTML; ?></p>
